@@ -16,11 +16,12 @@ app.use(bodyParser.json());
 
 require("./routes")(app, db, ussd)
 app.get("/", (req, res) => {
+    console.log("stage 1")
     // if (req.user != null)
     // 	res.render("main", {
     // 		user: req.user
     // 	});
     // else
-        // res.render("index");
+        res.render("index");
 });
 app.listen(process.env.PORT || port, () => console.log(` lynxe is listening on port ${port}!`))
