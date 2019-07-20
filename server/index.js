@@ -23,5 +23,4 @@ app.get("/", (req, res) => {
     // else
         // res.render("index");
 });
-
-app.listen(port, () => console.log(` listening on port ${port}!`))
+app.listen(process.env.PORT || port, () => console.log(` lynxe is listening on port ${port}!`))
