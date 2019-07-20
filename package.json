@@ -1,0 +1,21 @@
+{
+  "name": "chuka",
+  "version": "1.0.0",
+  "description": "\"USSD APP FOR SCHOOLS\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon start ./server/index.js"
+  },
+  "author": "Ukwuani Barnabas",
+  "license": "ISC",
+  "dependencies": {
+    "africastalking": "^0.4.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.1.1",
+    "nedb": "^1.8.0",
+    "nodemon": "^1.19.1",
+    "passport-local": "^1.0.0"
+  }
+}
