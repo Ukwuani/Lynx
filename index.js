@@ -1,5 +1,5 @@
 const app = require('express')()
-const port = 3000,
+const port = 5000,
 db = require('./models'),
 bodyParser = require('body-parser'),
 afriqt = require("africastalking")({
