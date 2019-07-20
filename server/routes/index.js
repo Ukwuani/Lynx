@@ -8,11 +8,11 @@ module.exports = (app, db, ussd) => {
 
 	// Index page
 	app.get("/", (req, res) => {
-		if (req.user != null)
-			res.render("main", {
-				user: req.user
-			});
-		else
+		// if (req.user != null)
+		// 	res.render("main", {
+		// 		user: req.user
+		// 	});
+		// else
 			// res.render("index");
 			res.send("hello")
 	});
