@@ -15,6 +15,13 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 require("./routes")(app, db, ussd)
-
+app.get("/", (req, res) => {
+    // if (req.user != null)
+    // 	res.render("main", {
+    // 		user: req.user
+    // 	});
+    // else
+        // res.render("index");
+});
 
 app.listen(port, () => console.log(` listening on port ${port}!`))
