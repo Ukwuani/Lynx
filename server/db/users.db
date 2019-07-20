@@ -1,16 +1,10 @@
 {"name":"Zebrudaya Jegs","course":"African tech rel","_id":"AV2Xy0wW45Du2ZA8"}
-{"name":"Zebrudaya Jegs","course":"African tech rel","_id":"BWEEG0paa5EP5vty"}
-{"name":"Zebrudaya Jegs","course":"African tech rel","_id":"CR0sXCvlFoEbZr0M"}
-{"name":"Zebrudaya Jegs","course":"African tech rel","_id":"EUun02a6ojM3bB3z"}
-{"name":"Zebrudaya Jegs","course":"African tech rel","_id":"LGjfb8gDZvx11kzf"}
-{"name":"Zebrudaya Jegs","course":"African tech rel","_id":"N8gByzljcd2eFUYl"}
-{"name":"Zebrudaya Jegs","course":"African tech rel","_id":"OWJNaxW8zgqXAeux"}
-{"name":"Zebrudaya Jegs","course":"African tech rel","_id":"WfRefMPTbbRD5TwC"}
-{"name":"Zebrudaya Jegs","course":"African tech rel","_id":"ZAXNIJJL5FoREwS7"}
-{"name":"Zebrudaya Jegs","course":"African tech rel","_id":"dZfhe5NsdnMiS4QC"}
-{"name":"Zebrudaya Jegs","course":"African tech rel","_id":"dueOUKrMv4SxAShT"}
-{"name":"Zebrudaya Jegs","course":"African tech rel","_id":"gcVl24Xh3eeg4DGb"}
-{"name":"Zebrudaya Jegs","course":"African tech rel","_id":"kdefeWfM0txfHEYg"}
-{"name":"Zebrudaya Jegs","course":"African tech rel","_id":"qpq49x2kt8EPdbXt"}
-{"name":"Zebrudaya Jegs","course":"African tech rel","_id":"yLWIPaCuVd2eOqh3"}
-{"name":"Zebrudaya Jegs","course":"African tech rel","_id":"yTSRNv4iUBf6TmYy"}
+{"name":"Zebrudaya Jegs", 
+"course":"African tech rel", 
+"_id":"dueOUKrMv4SxAShT", 
+"1st_semester": [{
+    "English": 
+}
+    ],
+"2nd_semester": []
+}
