@@ -5,6 +5,7 @@ bodyParser = require('body-parser'),
 afriqt = require("africastalking")({
     apiKey: "8ff55ad801b9597b6dadd376049c7bdd97da04dd1c873c3f6f3e0feb0d012f58",
     username: "sandbox"}),
+path 	= require("path");
 ussd = afriqt.USSD ;
 
 // app.get('/', (req, res) => res.send('Hello World!'))
@@ -22,6 +23,6 @@ app.get("/", (req, res) => {
     // 		user: req.user
     // 	});
     // else
-        res.render("index");
+    res.sendFile(path.join(__dirname+'/index.html'));
 });
 app.listen(process.env.PORT || port, () => console.log(` lynxe is listening on port ${port}!`))
