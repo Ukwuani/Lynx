@@ -8,16 +8,16 @@ module.exports = (app, db, ussd) => {
                 text: req.body.text
             };
             
-            if (params.text ===" ") {
+            if (params.text ==" ") {
                 res.send(`CON Africa's Talking Setup\n
                 1.  Africa\n
                 2. Chuka`)
             }
-            else if(params.text === "1") {
+            else if(params.text == "1") {
                 res.send(`END Africa is a continent `)
             }
 
-            else if(params.text === "2") {
+            else if(params.text == "2") {
                 res.send(`Chuka built this app `)
             }
 
