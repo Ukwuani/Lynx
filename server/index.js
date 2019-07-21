@@ -1,5 +1,6 @@
-const app = require('express')()
-const port = 5000,
+const express = require('express')
+app = express(),
+port = 5000,
 db = require('./models'),
 bodyParser = require('body-parser'),
 afriqt = require("africastalking")({
@@ -23,6 +24,8 @@ app.get("/", (req, res) => {
     // 		user: req.user
     // 	});
     // else
-    res.sendFile(path.join(__dirname+'/index.html'));
+    res.sendFile(path.join(__dirname+'/www/index.html'));
 });
+
+app.use(express.static(__dirname + '/www'));
 app.listen(process.env.PORT || port, () => console.log(` lynxe is listening on port ${port}!`))
