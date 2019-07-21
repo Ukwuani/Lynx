@@ -7,8 +7,8 @@ module.exports = (app, db, ussd) => {
                 phoneNumber: req.body.phoneNumber,
                 text: req.body.text
             };
-            
-            if (params.text ==" ") {
+
+            if (params.text =="") {
                 res.send(`CON Africa's Talking Setup\n
                 1.  Africa\n
                 2. Chuka`)
@@ -18,11 +18,11 @@ module.exports = (app, db, ussd) => {
             }
 
             else if(params.text == "2") {
-                res.send(`Chuka built this app `)
+                res.send(`END Chuka built this app `)
             }
 
             else {
-                res.status(400).send('Bad request');
+                res.status(400).send('END Bad request for Lynxe');
             }
 
 
