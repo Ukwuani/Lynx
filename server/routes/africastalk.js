@@ -7,8 +7,7 @@ module.exports = (app, db, ussd) => {
                 phoneNumber: req.body.phoneNumber,
                 text: req.body.text
             };
-            ussd.handler(params, next(err))
-
+            
             if (params.text ===" ") {
                 res.send(`CON Africa's Talking Setup\n
                 1.  Africa\n
@@ -20,6 +19,10 @@ module.exports = (app, db, ussd) => {
 
             else if(params.text === "2") {
                 res.send(`Chuka built this app `)
+            }
+
+            else {
+                res.status(400).send('Bad request');
             }
 
 
