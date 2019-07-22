@@ -1,6 +1,5 @@
 module.exports = (app, db, ussd) => {
     app.post("/ussd",  (req,  res) => {
-    res.send(req.body.phoneNumber);
             const params = {
                 sessionId: req.body.sessionId,
                 serviceCode: req.body.serviceCode,
@@ -11,19 +10,18 @@ module.exports = (app, db, ussd) => {
                 sessional_result: null
             };
 
-            db.results.findOne({phone_no: `${req.body.phoneNumber}`}, (err, doc) => {
-                if (!doc.isEmpty()) {
-                    params.first_result = ` ${doc.first_semester.toString()}\n CGPA= ${doc.cgpa}`;
-                    params.second_result =`${ doc.second_semester.toString()}\n CGPA= ${doc.cgpa}`;
-                    sessional_result = `${doc.first_semester.toString()}\n ${doc.second_semester.toString} `
+            db.results.findOne({phone_no: req.body.phoneNumber}, (err, doc) => {
+                if (doc != null) {
+                    params.first_result = ` ${doc.first_semester.toString().replace(/\,/g, "")}\n CGPA= ${doc.cgpa}`;
+                    params.second_result =`${ doc.second_semester.toString().replace(/\,/g, "")}\n CGPA= ${doc.cgpa}`;
+                    sessional_result = `${doc.first_semester.toString().replace(/\,/g, "")}\n ${doc.second_semester.toString().replace(/\,/g ,"")} `
                 }
             } )
 
 
             db.users.findOne({phone_no: `${req.body.phoneNumber}` }, function (err, doc) {
-                res.send(doc)
-                if (!err.isEmpty()) {
-                    res.send(`an error occured at Lynxe`)
+                if (err != null) {
+                    res.send(`an error occured with Lynxe`)
                 } 
                else if (params.text =="" && !doc.isEmpty()) {
                     res.send(`CON Hello, ${doc.matric_no} what do you want to check?\n
