@@ -1,14 +1,14 @@
 module.exports = (app, db, ussd) => {
     app.post("/ussd",  (req,  res) => {
-    
+    res.send(req.body.phoneNumber);
             const params = {
                 sessionId: req.body.sessionId,
                 serviceCode: req.body.serviceCode,
                 phoneNumber: req.body.phoneNumber,
                 text: req.body.text,
-                first_result,
-                second_result,
-                sessional_result
+                first_result: null,
+                second_result: null,
+                sessional_result: null
             };
 
             db.results.findOne({phone_no: `${req.body.phoneNumber}`}, (err, doc) => {
@@ -20,9 +20,10 @@ module.exports = (app, db, ussd) => {
             } )
 
 
-            db.users.findOne({ phone_no: `${req.body.phoneNumber}` }, (err, doc) => {
+            db.users.findOne({phone_no: `${req.body.phoneNumber}` }, function (err, doc) {
+                res.send(doc)
                 if (!err.isEmpty()) {
-                    res.send(err)
+                    res.send(`an error occured at Lynxe`)
                 } 
                else if (params.text =="" && !doc.isEmpty()) {
                     res.send(`CON Hello, ${doc.matric_no} what do you want to check?\n
@@ -70,5 +71,5 @@ module.exports = (app, db, ussd) => {
     
 
 
-
+        
 }

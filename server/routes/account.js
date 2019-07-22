@@ -14,10 +14,12 @@ module.exports = (app,db) =>{
     const hfunc = 21;
     const pkey = "l";
 
-    const uploadResult = (phone_no,  matric_no) => {
-        matric_no = matric_no;
-        phone_no = phone_no;
-        db.results.insert(result)
+    const uploadResult = (phone_nu,  matric_nu) => {
+        db.results.insert({matric_no: matric_nu, 
+            phone_no:phone_nu, 
+            first_semester: result.first_semester, 
+            second_semester: result.second_semester, 
+            cgpa: result.cgpa})
     }
 
     app.post("/signup", [check('email').isEmail(),
