@@ -5,8 +5,13 @@ var Datastore = require('nedb'),
     autoload: true
   });
 
+  results = new Datastore({
+    filename: __dirname + '/../db/results.db',
+    autoload: true
+  });
 
 
 module.exports = {
-  users
+  users,
+  results
 }

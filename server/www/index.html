@@ -5,8 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>Regsiter Now!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="./css/ussd.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/ussd.css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/index.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -16,29 +18,23 @@
                     <h2>Register to have access to exciting USSD features</h2>
                     <p>An alternative to your web portal!</p>
                 </div>
-                <form action="">
+                <form id="formsd">
                   <label for="first_name"></label>  
-                  <input type="text" class="form-input" placeholder="First Name" required>
+                  <input name="first_name" type="text" class="form-input" placeholder="First Name" required>
 
                   <label for="last_name"></label>
-                  <input type="text" class="form-input" placeholder="Last Name" required>
-
-                  <label for="password"></label>
-                  <input type="password" class="form-input" placeholder="Password" required>
-
-                  <label for="confirm_password"></label>
-                  <input type="password" class="form-input" placeholder="Confirm Password" required>
+                  <input name="last_name" type="text" class="form-input" placeholder="Last Name" required>
 
                   <label for="Email"></label>
-                  <input type="email" class="form-input" placeholder="Email" required>
+                  <input name="email" type="email" class="form-input" placeholder="Email" required>
 
                   <label for="matric_no"></label>
-                  <input type="text" class="form-input" placeholder="Matric Number" required>
+                  <input name="matric_no" type="text" class="form-input" placeholder="Matric Number" required>
 
                   <label for="phone_no"></label>
-                  <input type="text" class="form-input" placeholder="Mobile Number" required>
+                  <input name="phone_no" type="text" class="form-input" placeholder="Mobile Number" required>
 
-                  <input type="submit" name="" class="primary-btn" value="SUBMIT">
+                  <input type="button" onclick="send()" class="primary-btn" value="SUBMIT">
                 </form>
 
                 <div class="links">
@@ -61,7 +57,7 @@
             </div>
         </div>
     </div>
-    
-    
+
+
 </body>
 </html>
