@@ -23,32 +23,32 @@ module.exports = (app, db, ussd) => {
                 if (err != null) {
                     res.send(`an error occured with Lynxe`)
                 } 
-               else if (params.text =="" && !doc.isEmpty()) {
+               else if (params.text =="" && doc != null) {
                     res.send(`CON Hello, ${doc.matric_no} what do you want to check?\n
                     1. Result\n
                     2. School Fees`)
                 }
     
-                else if(params.text == "1" && !doc.isEmpty()) {
+                else if(params.text == "1" && doc != null) {
                     res.send(`CON How do you want to view it?\n
                     1. 1st Semester\n
                     2. 2nd Semester\n
                     3. Session`)
                 }
     
-                else if(params.text == "2" && !doc.isEmpty()) {
+                else if(params.text == "2" && doc != null) {
                     res.send(`END Choose your bank `)
                 }
     
-                else if (params.text =="1*1" && !doc.isEmpty()) {
+                else if (params.text =="1*1" && doc != null) {
                     res.send(`END ${params.first_result} `)
                 }
 
-                else if (params.text =="1*2" && !doc.isEmpty()) {
+                else if (params.text =="1*2" && doc != null) {
                     res.send(`END ${params.second_result} `)
                 }
 
-                else if (params.text =="1*3" && !doc.isEmpty()) {
+                else if (params.text =="1*3" && doc != null) {
                     res.send(`END ${params.sessional_result} `)
                 }
 
