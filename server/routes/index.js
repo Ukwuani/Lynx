@@ -10,7 +10,7 @@ module.exports = (app, db, atAPI) => {
 	app.get("/", (req, res) => {
 		console.log("stage 1")
 	
-		res.sendFile(path.join(__dirname+'/www/index.html'));
+		res.sendFile(path.join(__dirname+'/../www/index.html'));
 	});
 
 	// Handle Auth routes
