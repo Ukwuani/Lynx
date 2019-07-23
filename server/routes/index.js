@@ -4,7 +4,7 @@ let path 	= require("path");
 
 
 
-module.exports = (app, db, ussd) => {
+module.exports = (app, db, ussd, payment) => {
 
 	// Index page
 
@@ -13,7 +13,7 @@ module.exports = (app, db, ussd) => {
 	 require("./auth")(app, db);
 
 	//Handle Africas Talking API
-	require("./africastalk")(app, db, ussd);
+	require("./africastalk")(app, db, ussd, payment);
 
 	// Handle Auth routes
 	require("./account")(app, db);

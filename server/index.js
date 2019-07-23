@@ -6,8 +6,9 @@ bodyParser = require('body-parser'),
 afriqt = require("africastalking")({
     apiKey: "8ff55ad801b9597b6dadd376049c7bdd97da04dd1c873c3f6f3e0feb0d012f58",
     username: "sandbox"}),
-path 	= require("path");
-ussd = afriqt.USSD ;
+path 	= require("path"),
+ussd = afriqt.USSD ,
+payment = afriqt.PAYMENTS;
 
 // app.get('/', (req, res) => res.send('Hello World!'))
 
@@ -16,7 +17,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-require("./routes")(app, db, ussd)
+require("./routes")(app, db, ussd, payment)
 app.get("/", (req, res) => {
     console.log("stage 1")
     // if (req.user != null)

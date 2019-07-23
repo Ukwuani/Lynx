@@ -1,4 +1,4 @@
-module.exports = (app, db, ussd) => {
+module.exports = (app, db, ussd, payment) => {
     app.post("/ussd",  (req,  res) => {
             const params = {
                 sessionId: req.body.sessionId,
@@ -10,6 +10,21 @@ module.exports = (app, db, ussd) => {
                 sessional_result: null
             };
 
+            const payDetails = { 
+                productName: "School Fees",
+                 paymentCard: {
+                    cardNumber: null,
+                    cvvNumber: null,
+                    expiryMonth: 1,
+                    expiryYear:  2019,
+                    countryCode: "NG",
+                    authToken: null
+                 }, 
+                 currencyCode: "NGN", 
+                 amount: 100, 
+                 narration: "unilorin school fees", 
+                 metadata: {} }
+
             db.results.findOne({phone_no: req.body.phoneNumber}, (err, doc) => {
                 if (doc != null) {
                     params.first_result = ` ${doc.first_semester.toString().replace(/\,/g, "")}\n CGPA= ${doc.cgpa}`;
@@ -19,7 +34,7 @@ module.exports = (app, db, ussd) => {
             } )
 
 
-            db.users.findOne({phone_no: `${req.body.phoneNumber}` }, function (err, doc) {
+            db.users.findOne({phone_no: `${req.body.phoneNumber}` }, (err, doc) => {
                 if (err != null) {
                     res.send(`an error occured with Lynxe`)
                 } 
@@ -36,10 +51,6 @@ module.exports = (app, db, ussd) => {
                     3. Session`)
                 }
     
-                else if(params.text == "2" && doc != null) {
-                    res.send(`END Choose your bank `)
-                }
-    
                 else if (params.text =="1*1" && doc != null) {
                     res.send(`END ${params.first_result} `)
                 }
@@ -52,6 +63,27 @@ module.exports = (app, db, ussd) => {
                     res.send(`END ${params.sessional_result} `)
                 }
 
+                else if(params.text == "2" && doc != null) {
+                    res.send(`CON Enter your card number `)
+                }
+
+                else if (params.text[0] =="2" && params.text.length >= 10) {
+                    res.send(`CON Enter the expiry date\n
+                    eg. (01/2019)`)
+                }
+
+                else if (params.text[0] =="2" && params.text.includes('/')) {
+                    res.send("CON Enter the cvv")
+                }
+
+                else if (params.text[0] =="2" && params.text.length === 5) {
+                    res.send("CON Enter the password")
+                }   
+
+                else if (params.text[0] == "2" && params.text.length ===6    ) {
+                    res.send("Your Request was recieved and being processed, you will get an SMS soon")
+                }
+
             else {
                 res.status(400).send('END Bad request for Lynxe');
             }
@@ -61,12 +93,10 @@ module.exports = (app, db, ussd) => {
 
           
 
-
-
             
     })
 
-    
+    // cardCheckoutCharge({ productName, paymentCard/checkoutToken, currencyCode, amount, narration, metadata })
 
 
         
