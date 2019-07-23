@@ -10,8 +10,14 @@ var Datastore = require('nedb'),
     autoload: true
   });
 
+  transactions = new Datastore({
+    filename: __dirname + '/../db/transactions.db',
+    autoload: true
+  });
+
 
 module.exports = {
   users,
-  results
+  results,
+  transactions
 }

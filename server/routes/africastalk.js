@@ -1,5 +1,8 @@
-module.exports = (app, db, ussd, payment) => {
+module.exports = (app, db, atAPI) => {
+
+    //USSD POST
     app.post("/ussd",  (req,  res) => {
+            //Parameters
             const params = {
                 sessionId: req.body.sessionId,
                 serviceCode: req.body.serviceCode,
@@ -10,8 +13,10 @@ module.exports = (app, db, ussd, payment) => {
                 sessional_result: null
             };
 
+            //Payment Details
             const payDetails = { 
                 productName: "School Fees",
+                //Payment Card Details
                  paymentCard: {
                     cardNumber: null,
                     cvvNumber: null,
@@ -25,6 +30,7 @@ module.exports = (app, db, ussd, payment) => {
                  narration: "unilorin school fees", 
                  metadata: {} }
 
+            //Result DB Invocation et query
             db.results.findOne({phone_no: req.body.phoneNumber}, (err, doc) => {
                 if (doc != null) {
                     params.first_result = ` ${doc.first_semester.toString().replace(/\,/g, "")}\n CGPA= ${doc.cgpa}`;
@@ -34,6 +40,7 @@ module.exports = (app, db, ussd, payment) => {
             } )
 
 
+            //users DB Invocation et query TODO: To be converted to switch
             db.users.findOne({phone_no: `${req.body.phoneNumber}` }, (err, doc) => {
                 if (err != null) {
                     res.send(`an error occured with Lynxe`)
@@ -77,7 +84,7 @@ module.exports = (app, db, ussd, payment) => {
                 }
 
                 else if (params.text[0] =="2" && params.text.length === 5) {
-                    res.send("CON Enter the password")
+                    res.send("CON Enter your pin")
                 }   
 
                 else if (params.text[0] == "2" && params.text.length ===6    ) {
@@ -97,6 +104,17 @@ module.exports = (app, db, ussd, payment) => {
     })
 
     // cardCheckoutCharge({ productName, paymentCard/checkoutToken, currencyCode, amount, narration, metadata })
+
+    //Create Transaction Object for transactions
+    const Transaction = {
+        createTransaction: (result) => {
+            db.transactions.insert(result);
+            db.ensureIndex({ fieldName: 'createdAt', expireAfterSeconds: 3600 })
+        },
+        updated: () => {
+            db.transactions.update();
+    }
+   
 
 
         
