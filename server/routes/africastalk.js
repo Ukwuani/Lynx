@@ -30,6 +30,30 @@ module.exports = (app, db, atAPI) => {
                  narration: "unilorin school fees", 
                  metadata: {} }
 
+
+                   //Create Transaction Object for transactions
+    const Transaction = {
+        createTransaction: (result) => {
+            db.transactions.insert(result);
+        },
+        updateTransaction: (phoneNo, result) => {
+            db.transactions.update({phoneNumber: phoneNo}, {$set: result}, {}, (err, numberReplaced) => {
+                if (err != null) {
+                    console.log(err)
+                }
+
+            });
+    },
+    //Payments data assembly
+    articulatePay: (phoneNumber) => {
+        db.transactions.findOne({phoneNumber: phoneNumber}, (err, doc) => {
+            if (doc != null) {
+                payDetails.paymentCard = doc;
+            }
+        })
+    }
+}
+
             //Result DB Invocation et query
             db.results.findOne({phone_no: req.body.phoneNumber}, (err, doc) => {
                 if (doc != null) {
@@ -109,28 +133,7 @@ module.exports = (app, db, atAPI) => {
     })
 
 
-    //Create Transaction Object for transactions
-    const Transaction = {
-        createTransaction: (result) => {
-            db.transactions.insert(result);
-        },
-        updateTransaction: (phoneNo, result) => {
-            db.transactions.update({phoneNumber: phoneNo}, {$set: result}, {}, (err, numberReplaced) => {
-                if (err != null) {
-                    console.log(err)
-                }
-
-            });
-    },
-    //Payments data assembly
-    articulatePay: (phoneNumber) => {
-        db.transactions.findOne({phoneNumber: phoneNumber}, (err, doc) => {
-            if (doc != null) {
-                payDetails.paymentCard = doc;
-            }
-        })
-    }
-}
+  
    
 
 

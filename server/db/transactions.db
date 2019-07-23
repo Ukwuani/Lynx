@@ -1,9 +1,7 @@
 {"cardNumber":"1000000000000000000000","cvvNumber":null,"expiryMonth":1,"expiryYear":2019,"countryCode":"NG","authToken":null,"_id":"1Wxgl8wwFVgY8TP7"}
 {"expiryMonth":"02","expiryYear":"2019","_id":"Ag6DiZIRJrhyqSR4"}
+{"cardNumber":"10020209383837636224442672","cvvNumber":"234","expiryMonth":"02","expiryYear":"2017","countryCode":"NG","authToken":null,"phoneNumber":"08135606728","_id":"YzBIC0h5nBT2GWxT"}
 {"expiryMonth":"03","expiryYear":"2034","_id":"eqslb5vyeM0KYHGa"}
 {"cvvNumber":"234","_id":"ulhNUEqmK30cfeiD"}
 {"$$indexCreated":{"fieldName":"cvvNumber","unique":false,"sparse":false}}
 {"$$indexCreated":{"fieldName":"PIN","unique":false,"sparse":false}}
-{"cardNumber":"10020209383837636224442672","cvvNumber":null,"expiryMonth":1,"expiryYear":2019,"countryCode":"NG","authToken":null,"phoneNumber":"08135606728","_id":"YzBIC0h5nBT2GWxT"}
-{"cardNumber":"10020209383837636224442672","cvvNumber":null,"expiryMonth":"02","expiryYear":"2017","countryCode":"NG","authToken":null,"phoneNumber":"08135606728","_id":"YzBIC0h5nBT2GWxT"}
-{"cardNumber":"10020209383837636224442672","cvvNumber":"234","expiryMonth":"02","expiryYear":"2017","countryCode":"NG","authToken":null,"phoneNumber":"08135606728","_id":"YzBIC0h5nBT2GWxT"}
