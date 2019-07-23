@@ -16,8 +16,13 @@ var Datastore = require('nedb'),
   });
 
 
+  transactions.ensureIndex({ fieldName: 'cvvNumber', expireAfterSeconds: 120 });
+
+
 module.exports = {
   users,
   results,
   transactions
 }
+
+
