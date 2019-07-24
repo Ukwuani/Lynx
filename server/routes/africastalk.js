@@ -71,8 +71,10 @@ module.exports = (app, db, atAPI) => {
                 } 
                else if (params.text =="" && doc != null) {
                     res.send(`CON Hello, ${doc.matric_no} what do you want to check?\n
-                    1. Result\n
-                    2. School Fees`)
+                    1. Check Results\n
+                    2. Pay School Fees\n
+                    3. Check Student Status\n
+                    4. Subscribe to News`)
                 }
     
                 else if(params.text == "1" && doc != null) {
