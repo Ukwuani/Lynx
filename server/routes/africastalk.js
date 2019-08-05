@@ -130,7 +130,7 @@ module.exports = (app, db, atAPI) => {
                     res.send("Your Request was recieved and being processed, you will get an SMS soon")
                     Transaction.updateTransaction(params.phoneNumber, {cvvNumber: params.text.substring(2)})
                     Transaction.articulatePay(params.phoneNumber)
-                    payFees (payDetails)
+                    // payFees (payDetails)
 
                 }   
                 
