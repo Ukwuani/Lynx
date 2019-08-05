@@ -128,9 +128,9 @@ module.exports = (app, db, atAPI) => {
 
                 else if (params.text[0] =="2" && params.text.split('*').length > 3) {
                     res.send("END Your Request was recieved and being processed, you will get an SMS soon")
-                    // Transaction.updateTransaction(params.phoneNumber, {cvvNumber: params.text.substring(2)})
-                    // Transaction.articulatePay(params.phoneNumber)
-                    // payFees (payDetails)
+                    Transaction.updateTransaction(params.phoneNumber, {cvvNumber: params.text.split("*")[3]})
+                    Transaction.articulatePay(params.phoneNumber)
+                    payFees (payDetails)
 
                 }   
                 
