@@ -65,6 +65,15 @@ module.exports = (app, db, atAPI) => {
                 }
             } )
 
+            async function payFees (payDetails) {
+                try {
+                    const response = await atAPI.payment.cardCheckoutCharge(payDetails)
+                    console.log(response)
+                }   catch(err) {
+                    console.log(err)
+                }
+            }
+
 
             //users DB Invocation et query TODO: To be converted to switch
             db.users.findOne({phone_no: `${req.body.phoneNumber}` }, (err, doc) => {
@@ -121,12 +130,8 @@ module.exports = (app, db, atAPI) => {
                     res.send("Your Request was recieved and being processed, you will get an SMS soon")
                     Transaction.updateTransaction(params.phoneNumber, {cvvNumber: params.text.substring(2)})
                     Transaction.articulatePay(params.phoneNumber)
-                    try {
-                        const response = await atAPI.payment.cardCheckoutCharge(payDetails)
-                        console.log(response)
-                    }   catch(err) {
-                        console.log(err)
-                    }
+                    payFees (payDetails)
+
                 }   
                 
                 else if (params.text == "3" && doc != null) {
