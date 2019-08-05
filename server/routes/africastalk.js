@@ -65,14 +65,14 @@ module.exports = (app, db, atAPI) => {
                 }
             } )
 
-            async function payFees (payDetails) {
-                try {
-                    const response = await atAPI.payment.cardCheckoutCharge(payDetails)
-                    console.log(response)
-                }   catch(err) {
-                    console.log(err)
-                }
-            }
+            // async function payFees (payDetails) {
+            //     try {
+            //         const response = await atAPI.payment.cardCheckoutCharge(payDetails)
+            //         console.log(response)
+            //     }   catch(err) {
+            //         console.log(err)
+            //     }
+            // }
 
 
             //users DB Invocation et query TODO: To be converted to switch
@@ -123,6 +123,7 @@ module.exports = (app, db, atAPI) => {
 
                 else if (params.text[0] == "2" && params.text.includes('/') && params.text.split('*').length == 3) {
                     res.send("CON Enter the cvv")
+                    Transaction.updateTransaction(params.phoneNumber, {expiryMonth: params.text.split("*")[2].split('/')[0], expiryYear: params.text.split("/")[1]})
                 }
 
                 else if (params.text[0] =="2" && params.text.length == 5) {
