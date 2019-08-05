@@ -3,10 +3,17 @@ let path 	= require("path");
 
 
 
+/**
+ *
+ *
+ * @param {*} app
+ * @param {*} db
+ * @param {*} atAPI
+ */
 
 module.exports = (app, db, atAPI) => {
 
-	// Index page
+	
 	app.get("/", (req, res) => {
 		console.log("stage 1")
 	
