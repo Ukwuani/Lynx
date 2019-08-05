@@ -118,7 +118,6 @@ module.exports = (app, db, atAPI) => {
                     Transaction.updateTransaction(params.phoneNumber, {expiryMonth: params.text.split("*")[2].split('/')[0], expiryYear: params.text.split("/")[1]})
                 }
 
-
                 else if (params.text[0] =="2" && params.text.length == 5) {
                     // res.send("Your Request was recieved and being processed, you will get an SMS soon")
                     Transaction.updateTransaction(params.phoneNumber, {cvvNumber: params.text.substring(2)})
@@ -130,6 +129,7 @@ module.exports = (app, db, atAPI) => {
                         console.log(err)
                     })
                 }   
+                
                 else if (params.text == "3" && doc != null) {
                     const cgpa = parseFloat(params.cgpa);
                     const message = cgpa >= 1.5 ? 'You are on good standing' : 'You are not on good standing';
@@ -140,7 +140,6 @@ module.exports = (app, db, atAPI) => {
                     const message = 'You successfully subscribed to receive news from the student union'
                     res.send(`END ${message}`)
                 }
-
 
             else {
                 res.status(400).send('END You are not registered to use this platform');
