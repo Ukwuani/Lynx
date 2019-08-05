@@ -50,7 +50,6 @@ module.exports = (app, db, atAPI) => {
         db.transactions.findOne({phoneNumber: phoneNumber}, (err, doc) => {
             if (doc != null) {
                 payDetails.paymentCard = doc;
-                res.json(doc)
             }
         })
     }
@@ -119,15 +118,15 @@ module.exports = (app, db, atAPI) => {
                 }
 
                 else if (params.text[0] =="2" && params.text.length == 5) {
-                    // res.send("Your Request was recieved and being processed, you will get an SMS soon")
+                    res.send("Your Request was recieved and being processed, you will get an SMS soon")
                     Transaction.updateTransaction(params.phoneNumber, {cvvNumber: params.text.substring(2)})
                     Transaction.articulatePay(params.phoneNumber)
-                    atAPI.payment.cardCheckoutCharge(payDetails)
-                    .then(res => {
-                        console.log(res.toString)
-                    }).catch(err => {
+                    try {
+                        const response = await atAPI.payment.cardCheckoutCharge(payDetails)
+                        console.log(response)
+                    }   catch(err) {
                         console.log(err)
-                    })
+                    }
                 }   
                 
                 else if (params.text == "3" && doc != null) {
