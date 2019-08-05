@@ -123,7 +123,6 @@ module.exports = (app, db, atAPI) => {
 
                 else if (params.text[0] == "2" && params.text.includes('/') && params.text.split('*').length == 3) {
                     res.send("CON Enter the cvv")
-                    // Transaction.updateTransaction(params.phoneNumber, {expiryMonth: params.text.split("*")[2].split('/')[0], expiryYear: params.text.split("/")[1]})
                 }
 
                 else if (params.text[0] =="2" && params.text.length == 5) {
