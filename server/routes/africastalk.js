@@ -65,14 +65,14 @@ module.exports = (app, db, atAPI) => {
                 }
             } )
 
-            // async function payFees (payDetails) {
-            //     try {
-            //         const response = await atAPI.payment.cardCheckoutCharge(payDetails)
-            //         console.log(response)
-            //     }   catch(err) {
-            //         console.log(err)
-            //     }
-            // }
+            async function payFees (payDetails) {
+                try {
+                    const response = await atAPI.payment.cardCheckoutCharge(payDetails)
+                    console.log(response)
+                }   catch(err) {
+                    console.log(err)
+                }
+            }
 
 
             //users DB Invocation et query TODO: To be converted to switch
