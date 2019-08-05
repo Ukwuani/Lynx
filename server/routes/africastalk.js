@@ -10,7 +10,8 @@ module.exports = (app, db, atAPI) => {
                 text: req.body.text,
                 first_result: null,
                 second_result: null,
-                sessional_result: null
+                sessional_result: null,
+                cgpa: null
             };
 
             //Payment Details
@@ -58,9 +59,10 @@ module.exports = (app, db, atAPI) => {
             //Result DB Invocation et query
             db.results.findOne({phone_no: req.body.phoneNumber}, (err, doc) => {
                 if (doc != null) {
-                    params.first_result = ` ${doc.first_semester.toString().replace(/\,/g, "")}\n CGPA= ${doc.cgpa}`;
-                    params.second_result =`${ doc.second_semester.toString().replace(/\,/g, "")}\n CGPA= ${doc.cgpa}`;
-                    params.sessional_result = `${doc.first_semester.toString().replace(/\,/g, "")}\n ${doc.second_semester.toString().replace(/\,/g ,"")} `
+                    params.first_result = `1st Semester\n ${doc.first_semester.toString().replace(/\,/g, "")}\n CGPA = ${doc.cgpa}`;
+                    params.second_result = `2nd Semester\n ${ doc.second_semester.toString().replace(/\,/g, "")}\n CGPA= ${doc.cgpa}`;
+                    params.sessional_result = `1st Semester\n ${doc.first_semester.toString().replace(/\,/g, "")}\n 2nd Semester\n ${doc.second_semester.toString().replace(/\,/g ,"")} `;
+                    params.cgpa = doc.cgpa;
                 }
             } )
 
@@ -71,9 +73,11 @@ module.exports = (app, db, atAPI) => {
                     res.send(`an error occured with Lynxe`)
                 } 
                else if (params.text =="" && doc != null) {
-                    res.send(`CON Hello, ${doc.matric_no} what do you want to check?\n
-                    1. Result\n
-                    2. School Fees`)
+                    res.send(`CON Hello, ${doc.matric_no} what do you want to do?\n
+                    1. Check Results\n
+                    2. Pay School Fees\n
+                    3. Check Student Status\n
+                    4. Subscribe to News`)
                 }
     
                 else if(params.text == "1" && doc != null) {
@@ -99,7 +103,7 @@ module.exports = (app, db, atAPI) => {
                     res.send(`CON Enter your card number to pay ${payDetails.currencyCode}${payDetails.amount} `)
                 }
 
-                else if (params.text[0] =="2" && params.text.length >= 10) {
+                else if (params.text[0] =="2" && params.text.length >= 10 && params.text.split('*').length == 2) {
                     res.send(`CON Enter the expiry date\n
                     eg. (01/2019)`)
 
@@ -109,10 +113,11 @@ module.exports = (app, db, atAPI) => {
                     
                 }
 
-                else if (params.text[0] =="2" && params.text.includes('/')) {
+                else if (params.text[0] == "2" && params.text.includes('/') && params.text.split('*').length == 3) {
                     res.send("CON Enter the cvv")
-                    Transaction.updateTransaction(params.phoneNumber, {expiryMonth: params.text.split("/")[0].substring(2), expiryYear: params.text.split("/")[1]})
+                    Transaction.updateTransaction(params.phoneNumber, {expiryMonth: params.text.split("*")[2].split('/')[0], expiryYear: params.text.split("/")[1]})
                 }
+
 
                 else if (params.text[0] =="2" && params.text.length == 5) {
                     // res.send("Your Request was recieved and being processed, you will get an SMS soon")
@@ -125,9 +130,20 @@ module.exports = (app, db, atAPI) => {
                         console.log(err)
                     })
                 }   
+                else if (params.text == "3" && doc != null) {
+                    const cgpa = parseFloat(params.cgpa);
+                    const message = cgpa >= 1.5 ? 'You are on good standing' : 'You are not on good standing';
+                    res.send(`END ${message}`)
+                }
+
+                else if (params.text == "4" && doc != null) {
+                    const message = 'You successfully subscribed to receive news from the student union'
+                    res.send(`END ${message}`)
+                }
+
 
             else {
-                res.status(400).send('END Bad request for Lynxe');
+                res.status(400).send('END You are not registered to use this platform');
             }
                 
                 
