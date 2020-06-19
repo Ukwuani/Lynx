@@ -4,16 +4,9 @@ module.exports = (app, db, atAPI) => {
     //USSD POST
     app.post("/ussd",  (req,  res) => {
             //Parameters
-            const params = {
-                sessionId: req.body.sessionId,
-                serviceCode: req.body.serviceCode,
-                phoneNumber: req.body.phoneNumber,
-                text: req.body.text,
-                first_result: null,
-                second_result: null,
-                sessional_result: null,
-                cgpa: null
-            };
+            const {params} = require('../models/aficastalking.model')
+            // params(req.body, )
+     
 
             //Payment Details
             const payDetails = { 
@@ -34,27 +27,28 @@ module.exports = (app, db, atAPI) => {
 
 
     //Create Transaction Object for transactions
-    const Transaction = {
-        createTransaction: (result) => {
-            db.transactions.insert(result);
-        },
-        updateTransaction: (phoneNo, result) => {
-            db.transactions.update({phoneNumber: phoneNo}, {$set: result}, {}, (err, numberReplaced) => {
-                if (err != null) {
-                    console.log(err)
-                }
+    const Transaction = require("../repositories/schoolfees.repo")
+//     {
+//         createTransaction: (result) => {
+//             db.transactions.insert(result);
+//         },
+//         updateTransaction: (phoneNo, result) => {
+//             db.transactions.update({phoneNumber: phoneNo}, {$set: result}, {}, (err, numberReplaced) => {
+//                 if (err != null) {
+//                     console.log(err)
+//                 }
 
-            });
-    },
-    //Payments data assembly
-    articulatePay: (phoneNumber) => {
-        db.transactions.findOne({phoneNumber: phoneNumber}, (err, doc) => {
-            if (doc != null) {
-                payDetails.paymentCard = doc;
-            }
-        })
-    }
-}
+//             });
+//     },
+//     //Payments data assembly
+//     articulatePay: (phoneNumber) => {
+//         db.transactions.findOne({phoneNumber: phoneNumber}, (err, doc) => {
+//             if (doc != null) {
+//                 payDetails.paymentCard = doc;
+//             }
+//         })
+//     }
+// }
 
             //Result DB Invocation et query
             db.results.findOne({phone_no: req.body.phoneNumber}, (err, doc) => {
