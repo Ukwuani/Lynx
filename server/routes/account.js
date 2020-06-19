@@ -3,7 +3,7 @@ const {createAccount} = require('../controllers/account.controller')
 
 
 module.exports = (router) =>{
-    app.post(
+    router.post(
         "/signup", 
         [
             check('email').isEmail(),

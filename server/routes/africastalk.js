@@ -1,8 +1,16 @@
-
-module.exports = (app, db, atAPI) => {
+const afriqt = require("africastalking")({
+    apiKey: "8ff55ad801b9597b6dadd376049c7bdd97da04dd1c873c3f6f3e0feb0d012f58",
+    username: "sandbox"})
+const atAPI = {
+    sms: afriqt.SMS,
+    ussd:  afriqt.USSD ,
+    payment: afriqt.PAYMENTS
+    }
+const db = require('../models')
+module.exports = (router) => {
 
     //USSD POST
-    app.post("/ussd",  (req,  res) => {
+    router.post("/ussd",  (req,  res) => {
             //Parameters
             const {params} = require('../models/aficastalking.model')
             // params(req.body, )
