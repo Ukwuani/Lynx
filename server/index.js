@@ -18,7 +18,7 @@ const router = require("./routes")
 
 //set the landing page
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname+'/../www/index.html'));
+  res.sendFile(path.join(__dirname+'/www/index.html'));
 });
 app.use(router)
 app.use(express.static(__dirname + '/www'));

@@ -1,9 +1,10 @@
 const {results} = require("../models")
-const result = require("../models/result.model")
+const resultmodel = require("../models/result.model")
 
 module.exports = {
 
     async createResult(req) {
-        return await results.insert(result(req))
+        console.log(resultmodel(req))
+        return await results.insert(resultmodel(req))
     }
 }

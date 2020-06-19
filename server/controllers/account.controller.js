@@ -7,8 +7,11 @@ module.exports= {
         if (!err.isEmpty())
             return res.status(422).json({ err: err.array() });
         
-        UserRepo.createUser(req.body)
-        ResultRepo.createResult(req.body)
+        await UserRepo.createUser(req.body)
+        try {await ResultRepo.createResult(req.body) } catch (err) {
+            console.log(err)
+        }
+        console.log('dddfg')
         return res.json({
             status: 200,
             success: true
