@@ -1,15 +1,9 @@
 
 let path 	= require("path");
+const router = require('express').Router()
 
 
-
-/**
- *
- *
- * @param {*} app
- * @param {*} db
- * @param {*} atAPI
- */
+module.exports = router
 
 module.exports = (app, db, atAPI) => {
 
@@ -21,13 +15,13 @@ module.exports = (app, db, atAPI) => {
 	});
 
 	// Handle Auth routes
-	 require("./auth")(app, db);
+	 require("./auth")(router);
 
 	//Handle Africas Talking API
 	require("./africastalk")(app, db, atAPI);
 
 	// Handle Auth routes
-	require("./account")(app, db);
+	require("./account")(router);
 
 
 

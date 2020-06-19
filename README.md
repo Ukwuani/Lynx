@@ -5,8 +5,8 @@ NodeJs, NeDB, ExpressJS, AfricasTalking API
 
 ```
 clone app
-npm install
-npm run start
+yarn install
+yarn run start
 ```
 
  * [db](https://github.com/Ukwuani/Lynx/tree/master/server/db)`db`

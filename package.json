@@ -1,7 +1,7 @@
 {
-  "name": "chuka",
-  "version": "1.0.0",
-  "description": "\"USSD APP FOR SCHOOLS\"",
+  "name": "Lynx",
+  "version": "1.0.1",
+  "description": "\"USSD APP FOR SCHOOLS with Africastalking\"",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,6 +21,8 @@
     "passport-local": "^1.0.0"
   },
   "engines": {
-    "node": "8.11.4"
-  }
+    "node": "13.12.0"
+  },
+  "repository": "https://github.com/Ukwuani/Lynx.git",
+  "private": false
 }

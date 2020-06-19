@@ -1,3 +1,4 @@
+
 module.exports = (app, db, atAPI) => {
 
     //USSD POST
@@ -32,7 +33,7 @@ module.exports = (app, db, atAPI) => {
                  metadata: {} }
 
 
-                   //Create Transaction Object for transactions
+    //Create Transaction Object for transactions
     const Transaction = {
         createTransaction: (result) => {
             db.transactions.insert(result);

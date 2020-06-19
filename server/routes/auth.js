@@ -1,1 +1,1 @@
-module.exports = (app,db) =>{}
+module.exports = (router) =>{}
